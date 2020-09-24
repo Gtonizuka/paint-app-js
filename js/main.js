@@ -25,10 +25,14 @@ function start (e) {
 
 function draw (e)  {
 
-    const {clientX: x, clientY: y} = e;
+    let {clientX: x, clientY: y} = e;
 
     if(!isDrawing) return;
     ctx.lineCap = "round";
+
+    // Fix for centering canvas
+    x = x - canvas.offsetLeft;
+    y = y - canvas.offsetTop;
 
     ctx.lineTo(x, y);
     ctx.stroke();
@@ -50,8 +54,6 @@ function clearCanvas() {
 
 // Get color
 function getColorPicker () {
-    console.log(color_picker.value);
-
     ctx.strokeStyle = color_picker.value;
 }
 
